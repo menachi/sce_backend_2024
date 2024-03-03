@@ -41,10 +41,9 @@ const generateTokens = (userId: string): { accessToken: string, refreshToken: st
     });
 
     const refreshToken = jwt.sign({
-        _id: userId
-    }, process.env.REFRESH_TOKEN_SECRET, {
-        expiresIn: process.env.REFRESH_TOKEN_EXPIRATION
-    });
+        _id: userId,
+        salt: Math.random()
+    }, process.env.REFRESH_TOKEN_SECRET);
 
     return {
         accessToken: accessToken,

@@ -96,6 +96,7 @@ describe("Auth test", () => {
         expect(res1.statusCode).toBe(200);
         accessToken = res1.body.accessToken;
         refreshToken = res1.body.refreshToken;
+
         expect(accessToken).not.toBeNull();
         expect(refreshToken).not.toBeNull();
 
