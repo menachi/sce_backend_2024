@@ -12,28 +12,21 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const post_model_1 = __importDefault(require("../models/post_model"));
 const base_controller_1 = __importDefault(require("./base_controller"));
-const getPost = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log("post get");
-    base_controller_1.default.get(post_model_1.default, req, res);
-});
-const getPostById = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log("post get by id");
-    base_controller_1.default.getById(post_model_1.default, req, res);
-});
-const postPost = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log("post post ");
-    base_controller_1.default.post(post_model_1.default, req, res);
-});
-//updatye a sudent with the given id
-const putPost = (req, res) => {
-    console.log("post put");
-    res.status(400).send("Not implemented");
-};
-const deletePost = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log("post delete");
-    base_controller_1.default.remove(post_model_1.default, req, res);
-});
-exports.default = { getPost, getPostById, postPost, putPost, deletePost };
+const post_model_1 = __importDefault(require("../models/post_model"));
+class PostController extends base_controller_1.default {
+    constructor() {
+        super(post_model_1.default);
+    }
+    post(req, res) {
+        const _super = Object.create(null, {
+            post: { get: () => super.post }
+        });
+        return __awaiter(this, void 0, void 0, function* () {
+            req.body.owner = req.body.user._id;
+            _super.post.call(this, req, res);
+        });
+    }
+}
+exports.default = new PostController();
 //# sourceMappingURL=post_controller.js.map

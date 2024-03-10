@@ -32,7 +32,7 @@ afterAll(async () => {
 
 
 
-describe("Student", () => {
+describe("Post tests", () => {
     test("Get /post - empty collection", async () => {
         const res = await request(app).get("/post");
         expect(res.statusCode).toBe(200);
